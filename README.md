@@ -1,6 +1,6 @@
 ## Power Bottiom 
 
-<p align="center"><img src="https://skillicons.dev/icons?i=vscode,raspberrypi,py,opencv,cs"></p>
+<p align="center"><img src="https://skillicons.dev/icons?i=vscode,raspberrypi,py,opencv,cpp"></p>
 
 <hr/>
 
