@@ -4,7 +4,7 @@
 
 <hr/>
 
-### Дрон для мойки окон все програмное обиспечение для [Raspberry Pi](https://github.com/CopterExpress/clover) и [PixHawk](https://github.com/CopterExpress/Firmware) взято с [Clover](https://clover.coex.tech/ru/) 
+### Дрон для мойки окон все програмное обеспечение для [Raspberry Pi](https://github.com/CopterExpress/clover) и [PixHawk](https://github.com/CopterExpress/Firmware) взято с [Clover](https://clover.coex.tech/ru/) 
 
 ### Window cleaning drone. All software for [Raspberry Pi](https://github.com/CopterExpress/clover) and [PixHawk](https://github.com/CopterExpress/Firmware) is taken from [Clover](https://clover.coex.tech/ru/)
 
