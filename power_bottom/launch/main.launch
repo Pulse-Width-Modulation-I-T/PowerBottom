@@ -1,3 +1,3 @@
 <launch>
-	<node name="power_bottom" pkg="power_bottom" type="main.py"/>
+	<node name="windows_detect" pkg="windows_detect" type="windows_detect.py"/>
 </launch>
