@@ -7,7 +7,7 @@
     <arg name="rosbridge" default="true"/>
     <arg name="main_camera" default="true"/>
     <arg name="optical_flow" default="true"/>
-    <arg name="aruco" default="false"/>
+    <arg name="aruco" default="true"/>
     <arg name="rangefinder_vl53l1x" default="true"/>
     <arg name="led" default="true"/>
     <arg name="blocks" default="false"/>
