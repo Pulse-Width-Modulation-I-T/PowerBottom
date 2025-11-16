@@ -14,10 +14,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build image
+      - name: Fix permissions for all scripts
         run: |
           chmod +x ./builder/image-build.sh
-          docker run --privileged --rm -v /dev:/dev -v $(pwd):/builder/repo -e TRAVIS_TAG="${{ github.event.release.tag_name }}" sfalexrog/img-tool:qemu-update
+          chmod +x ./builder/image-init.sh
+          chmod +x ./builder/assets/init_rpi.sh
+          chmod +x ./builder/assets/hardware_setup.sh
+          find ./builder -name "*.sh" -exec chmod +x {} \;
+      - name: Build image
+        run: |
+          docker run --privileged --rm \
+            -v /dev:/dev \
+            -v $(pwd):/builder/repo \
+            -e TRAVIS_TAG="${{ github.event.release.tag_name }}" \
+            sfalexrog/img-tool:qemu-update
       - name: Compress image
         run: |
           cd images && sudo chmod -R 777 . && zip -9 $(echo *_*).zip *_* && ls -l . && unzip -l *_*.zip
