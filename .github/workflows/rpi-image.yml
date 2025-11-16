@@ -1,4 +1,4 @@
-name: RPi image build
+name: RPi image
 
 on:
   push:
@@ -14,22 +14,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Fix permissions for all scripts
-        run: |
-          chmod +x ./builder/image-build.sh
-          chmod +x ./builder/image-init.sh
-          chmod +x ./builder/assets/init_rpi.sh
-          chmod +x ./builder/assets/hardware_setup.sh
-          find ./builder -name "*.sh" -exec chmod +x {} \;
       - name: Build image
         run: |
-          docker run --privileged --rm \
-            -v /dev:/dev \
-            -v $(pwd):/builder/repo \
-            -e TRAVIS_TAG="${{ github.event.release.tag_name }}" \
-            sfalexrog/img-tool:qemu-update
+          docker run --privileged --rm -v /dev:/dev -v $(pwd):/builder/repo -e TRAVIS_TAG="${{ github.event.release.tag_name }}" sfalexrog/img-tool:qemu-update
       - name: Compress image
         run: |
+          cd images && sudo chmod -R 777 . && zip -9 $(echo *_*).zip *_* && ls -l . && unzip -l *_*.zip
+      - name: Upload image
+        uses: softprops/action-gh-release@v1
+        if: ${{ github.event_name == 'release' }}
+        with:
+          files: images/*_*.zip
+          prerelease: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           cd images && sudo chmod -R 777 . && zip -9 $(echo *_*).zip *_* && ls -l . && unzip -l *_*.zip
       - name: Upload image
         uses: softprops/action-gh-release@v1
