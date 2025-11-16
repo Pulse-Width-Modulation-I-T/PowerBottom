@@ -1,4 +1,4 @@
-name: RPi image
+name: RPi image build
 
 on:
   push:
@@ -16,6 +16,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build image
         run: |
+          chmod +x ./builder/image-build.sh
           docker run --privileged --rm -v /dev:/dev -v $(pwd):/builder/repo -e TRAVIS_TAG="${{ github.event.release.tag_name }}" sfalexrog/img-tool:qemu-update
       - name: Compress image
         run: |
